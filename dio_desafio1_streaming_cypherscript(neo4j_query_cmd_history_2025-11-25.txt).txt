@@ -1,0 +1,146 @@
+CREATE CONSTRAINT FOR (u:User) REQUIRE u.nome IS UNIQUE;
+CREATE CONSTRAINT FOR (m:Movie) REQUIRE m.titulo IS UNIQUE;
+CREATE CONSTRAINT FOR (s:Series) REQUIRE s.titulo IS UNIQUE;
+CREATE CONSTRAINT FOR (a:Actor) REQUIRE a.nome IS UNIQUE;
+CREATE CONSTRAINT FOR (d:Director) REQUIRE d.nome IS UNIQUE;
+CREATE CONSTRAINT FOR (g:Genre) REQUIRE g.nome IS UNIQUE;
+
+CREATE (:User {nome: 'User 1'});
+CREATE (:User {nome: 'User 2'});
+CREATE (:User {nome: 'User 3'});
+CREATE (:User {nome: 'User 4'});
+CREATE (:User {nome: 'User 5'});
+CREATE (:User {nome: 'User 6'});
+CREATE (:User {nome: 'User 7'});
+CREATE (:User {nome: 'User 8'});
+CREATE (:User {nome: 'User 9'});
+CREATE (:User {nome: 'User 10'});
+
+MATCH (u:User {nome: 'User 1'})
+MERGE (s:Series {titulo: 'The Office'})
+MERGE (d:Director {nome: 'Greg Daniels'})
+MERGE (g:Genre {nome: 'Comedia'})
+MERGE (a1:Actor {nome: 'Rainn Wilson'})
+MERGE (a2:Actor {nome: 'Jenna Fischer'})
+MERGE (d)-[:DIRECTED]->(s)
+MERGE (s)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(s)
+MERGE (a2)-[:ACTED_IN]->(s)
+MERGE (u)-[:WATCHED {rating: 8.0}]->(s);
+
+
+MATCH (u:User {nome: 'User 2'})
+MERGE (s:Series {titulo: 'Breaking Bad'})
+MERGE (d:Director {nome: 'Vince Gilligan'})
+MERGE (g:Genre {nome: 'Drama'})
+MERGE (a1:Actor {nome: 'Bryan Cranston'})
+MERGE (a2:Actor {nome: 'Anna Gunn'})
+MERGE (d)-[:DIRECTED]->(s)
+MERGE (s)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(s)
+MERGE (a2)-[:ACTED_IN]->(s)
+MERGE (u)-[:WATCHED {rating: 9.0}]->(s);
+
+
+MATCH (u:User {nome: 'User 3'})
+MERGE (s:Series {titulo: 'Stranger Things'})
+MERGE (d:Director {nome: 'Matt Duffer'})
+MERGE (g:Genre {nome: 'Ficção Científica'})
+MERGE (a1:Actor {nome: 'Winona Ryder'})
+MERGE (a2:Actor {nome: 'David Harbour'})
+MERGE (d)-[:DIRECTED]->(s)
+MERGE (s)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(s)
+MERGE (a2)-[:ACTED_IN]->(s)
+MERGE (u)-[:WATCHED {rating: 7.0}]->(s);
+
+
+MATCH (u:User {nome: 'User 4'})
+MERGE (s:Series {titulo: 'True Detective'})
+MERGE (d:Director {nome: 'Nic Pizzolatto'})
+MERGE (g:Genre {nome: 'Suspense'})
+MERGE (a1:Actor {nome: 'Matthew McConaughey'})
+MERGE (a2:Actor {nome: 'Colin Farrell'})
+MERGE (d)-[:DIRECTED]->(s)
+MERGE (s)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(s)
+MERGE (a2)-[:ACTED_IN]->(s)
+MERGE (u)-[:WATCHED {rating: 9.5}]->(s);
+
+
+MATCH (u:User {nome: 'User 5'})
+MERGE (s:Series {titulo: 'Chernobyl'})
+MERGE (d:Director {nome: 'Craig Mazin'})
+MERGE (g:Genre {nome: 'Drama'})
+MERGE (a1:Actor {nome: 'Jessie Buckley'})
+MERGE (a2:Actor {nome: 'Jared Harris'})
+MERGE (d)-[:DIRECTED]->(s)
+MERGE (s)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(s)
+MERGE (a2)-[:ACTED_IN]->(s)
+MERGE (u)-[:WATCHED {rating: 9.0}]->(s);
+
+
+MATCH (u:User {nome: 'User 6'})
+MERGE (m:Movie {titulo: 'O Poderoso Chefão'})
+MERGE (d:Director {nome: 'Francis Ford Coppola'})
+MERGE (g:Genre {nome: 'Drama'})
+MERGE (a1:Actor {nome: 'Marlon Brando'})
+MERGE (a2:Actor {nome: 'Al Pacino'})
+MERGE (d)-[:DIRECTED]->(m)
+MERGE (m)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(m)
+MERGE (a2)-[:ACTED_IN]->(m)
+MERGE (u)-[:WATCHED {rating: 9.0}]->(m);
+
+
+MATCH (u:User {nome: 'User 7'})
+MERGE (m:Movie {titulo: 'A Lista de Schindler'})
+MERGE (d:Director {nome: 'Steven Spielberg'})
+MERGE (g:Genre {nome: 'Drama'})
+MERGE (a1:Actor {nome: 'Liam Neeson'})
+MERGE (a2:Actor {nome: 'Ralph Fiennes'})
+MERGE (d)-[:DIRECTED]->(m)
+MERGE (m)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(m)
+MERGE (a2)-[:ACTED_IN]->(m)
+MERGE (u)-[:WATCHED {rating: 9.0}]->(m);
+
+
+MATCH (u:User {nome: 'User 8'})
+MERGE (m:Movie {titulo: 'O Resgate do Soldado Ryan'})
+MERGE (d:Director {nome: 'Steven Spielberg'})
+MERGE (g:Genre {nome: 'Drama'})
+MERGE (a1:Actor {nome: 'Tom Hanks'})
+MERGE (a2:Actor {nome: 'Edward Burns'})
+MERGE (d)-[:DIRECTED]->(m)
+MERGE (m)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(m)
+MERGE (a2)-[:ACTED_IN]->(m)
+MERGE (u)-[:WATCHED {rating: 7.0}]->(m);
+
+
+MATCH (u:User {nome: 'User 9'})
+MERGE (m:Movie {titulo: 'Forrest Gump'})
+MERGE (d:Director {nome: 'Robert Zemeckis'})
+MERGE (g:Genre {nome: 'Comedia'})
+MERGE (a1:Actor {nome: 'Tom Hanks'})
+MERGE (a2:Actor {nome: 'Rebecca Williams'})
+MERGE (d)-[:DIRECTED]->(m)
+MERGE (m)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(m)
+MERGE (a2)-[:ACTED_IN]->(m)
+MERGE (u)-[:WATCHED {rating: 9.0}]->(m);
+
+
+MATCH (u:User {nome: 'User 10'})
+MERGE (m:Movie {titulo: 'Matrix'})
+MERGE (d:Director {nome: 'Lana Wachowski'})
+MERGE (g:Genre {nome: 'Ficção Científica'})
+MERGE (a1:Actor {nome: 'Keanu Reeves'})
+MERGE (a2:Actor {nome: 'Laurence Fishburne'})
+MERGE (d)-[:DIRECTED]->(m)
+MERGE (m)-[:IN_GENRE]->(g)
+MERGE (a1)-[:ACTED_IN]->(m)
+MERGE (a2)-[:ACTED_IN]->(m)
+MERGE (u)-[:WATCHED {rating: 8.5}]->(m);
